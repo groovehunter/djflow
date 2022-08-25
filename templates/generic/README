@@ -1,0 +1,20 @@
+generic_detail.html
+generic_detail_obj.html
+
+	currently used detail view for generic views
+
+generic_list.html
+generic_list_obj.html
+page_djtable.html
+page_include_table.html
+
+	includes "table.html" 
+
+table_django_tables2_orig.html
+table_generic.html
+table_generic_obj.html
+
+table.html
+
+	manually rendered template for django_tables2, used
+

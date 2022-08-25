@@ -1,0 +1,59 @@
+# used for init. of menu
+# and permission system
+
+- verschenka:
+    id:     verschenka
+    name:   Verschenka-index
+    href:   verschenka/index
+    urlname:  verschenka:index
+    links:
+      - name:   Item List
+        href:   /verschenka/
+      - name:   Item Index
+        href:   /verschenka/item/add
+
+- page:
+    id:      
+    name:     Seiten
+    href:    page/
+    urlname:  helfa_aux_dev:page
+    links:
+      - name:    Seitenübersicht
+        href:    /page/index
+      - name:    Video upload
+        href:    /page/one
+
+
+- topics:
+    id:     topics
+    name:   Themen + Konzepte
+    href:   topic/
+    urlname: topics:index
+    links:
+      - name:   Themen-Liste
+        href:   /video/topic
+      - name:   Thema hinzufügen
+        href:   /video/topic/add
+
+- tags:
+    id:     tags
+    name:   Tags
+    href:   taggit/
+    urlname: taggit:index
+    links:
+      - name: Tag Index
+        href: taggit/
+      - name: Add Tag
+        href: taggit/tag/add
+
+- users:
+    id:     users logout
+    name:   User logout
+    href:   users/logout
+    urlname: users:out
+    links:
+      - name: user list
+        href: /users/list
+      - name: user logout
+        href: /users/logout
+

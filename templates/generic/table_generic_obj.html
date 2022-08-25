@@ -1,0 +1,50 @@
+<!-- table generic / nicht fuer befunde! -->
+{% load getattr %}
+{% if debug %}
+  {{keys}}
+{% endif %}
+<table summary="{{summary}}" class="sortable grid">
+<thead style="font-weight:bold">
+<tr>
+    {% if rowbox %}
+    <th>
+        <input type="checkbox" id="sel_all1"
+			   onclick="javascript:select_all('1')"
+			   title="Alle ausw&auml;hlen // Keinen ausw&auml;hlen" />
+    </th>
+    {% endif %}
+    <th>Edit</th>
+
+    {% for fn in keys %}
+	    <th class="sortable">
+	       {{fn}}
+	    </th>
+    {% endfor %}
+    <th>Detail</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for item in object_list %}
+
+<tr class="{% cycle 'odd' 'even' %}">
+    {% if rowbox %}
+    <td style="text-align:center;">
+        <input type="checkbox" name="{{item.key}}" value="" />
+    </td>
+    {% endif %}
+    <td>
+      <a href="{{url_detail}}/{{item.id}}">{{item.name}}</a>
+    </td>
+
+    {% for k in keys %}
+      <td>{{item|getattr:k}}</td>
+    {% endfor %}
+    <td><a href="{{url_detail}}/{{item.id}}">{{item.name}}</a></td>
+</tr>
+
+{% endfor %}
+</tbody>
+
+</table>
