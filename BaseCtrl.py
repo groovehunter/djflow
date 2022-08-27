@@ -2,7 +2,6 @@
 import yaml
 from os.path import join
 from django.conf import settings
-from helfa_aux_dev.telegram import prepare_login_widget
 
 import logging
 lg = logging.getLogger('root')
@@ -22,6 +21,8 @@ class BaseCtrl:
 
         menudata = []
 
+        if not self.tree:
+            return
         for section in self.tree:
             #self.lg.debug('section %s', section )
             sec = list(section.values())[0]
@@ -54,12 +55,8 @@ class BaseCtrl:
           self.context['logged_in'] = True
           self.context['username'] = self.request.user.username
         else:
-          self.prepare_tg_widget()
           self.context['username'] = "Not logged in"
 
-    def prepare_tg_widget(self):
-        widget = prepare_login_widget()
-        self.context['telegram_login_widget'] = widget        
 
     """
     def init_logging(self):

@@ -1,36 +1,6 @@
 # used for init. of menu
 # and permission system
 
-- verschenka:
-    id:     verschenka
-    name:   Verschenka-index
-    href:   verschenka/index
-    urlname:  verschenka:index
-    links:
-      - name:   Item List
-        href:   /verschenka/
-      - name:   Item Index
-        href:   /verschenka/item/add
 
-
-- users:
-    id:     users logout
-    name:   User logout
-    href:   users/logout
-    urlname: users:out
-    links:
-      - name: user list
-        href: /users/list
-      - name: user logout
-        href: /users/lo
-
-- categories:
-    id:     categories
-    name:   Kategorien
-    href:   cats
-    urlname: verschenka:category-list
-    links:
-      - name: cat 1
-        href: cats/schuhe
 
 
