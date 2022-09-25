@@ -2,10 +2,25 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.conf import settings
 
-from .BaseCtrl import BaseCtrl
+from .BaseCtrl import BaseCtrl, DjBase
 
 import logging
 lg = logging.getLogger('root')
+
+class DjMixin(DjBase):
+    # kann anders heissen
+    def get_context_data(self):
+        #context = super().get_context_data(**kwargs)
+        context = {}
+        c = self.check_user()
+        self.yaml_load()
+        menudata = self.yamlmenu()
+        menu = {'menudata': menudata}
+        context.update(menu)
+        context.update(c)
+        return context
+
+
 
 class ViewControllerSupport(BaseCtrl):
     """ lightweight ctrl methods to add abilities to django

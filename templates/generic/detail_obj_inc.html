@@ -1,0 +1,32 @@
+{% load getattribute %}
+
+<h1 class="">{{app}} - {{modl}} - [Detail view] </h1>
+
+<div class="">
+  [ <a href="{{url}}/{{object.id|add:"-1"}}">prev</a>
+  &nbsp;|&nbsp;
+  <a href="{{url}}/{{object.id|add:"1"}}">next</a> ]
+  --- <a href="{{url_list}}">Alle</a>
+</div>
+
+<div class="">Details for: <b>{{object}}</b></div>
+
+<div class="">
+  <table class="">
+    <thead>
+      <tr>
+        <th class="">Attribut</th>
+        <th class="">Wert</th>
+      </tr>
+    </thead>
+  {% for k in keys %}
+    <tr class="{% cycle 'bg-grey-300' 'bg-grey-500' %}">
+      <td class="">{{k}}</td>
+      <td class="">{{object|getattribute:k}}</td>
+    </tr>
+  {% endfor %}
+  </table>
+</div>
+
+</div>
+
