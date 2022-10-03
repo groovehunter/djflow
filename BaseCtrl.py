@@ -21,7 +21,7 @@ class DjBase:
         return context
 
     def yaml_load(self):
-        c = open(join(settings.BASE_DIR, 'djflow/menu.yaml'), encoding='utf8').read()
+        c = open(join(settings.BASE_DIR, 'menu.yaml'), encoding='utf8').read()
         lg.debug('loading menu')
         self.tree = yaml.load(c, Loader=yaml.BaseLoader)
 
@@ -30,6 +30,8 @@ class DjBase:
             using menu.yaml config file """
 
         menudata = []
+        if not self.tree:
+          return menudata
 
         for section in self.tree:
             #self.lg.debug('section %s', section )
@@ -105,7 +107,6 @@ class BaseCtrl:
         else:
           self.context['username'] = "Not logged in"
           self.context['logged_in'] = False
-          self.prepare_tg_widget()
           self.context['username'] = "Nobody !"
 
     """
@@ -126,4 +127,3 @@ class BaseCtrl:
         self.init_ctrl()
         self.template_name = 'access_denied.html'
         return self.render()
-
