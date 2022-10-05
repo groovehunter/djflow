@@ -21,7 +21,7 @@ class DjBase:
         return context
 
     def yaml_load(self):
-        c = open(join(settings.BASE_DIR, 'menu.yaml'), encoding='utf8').read()
+        c = open(settings.MENU_FILE), encoding='utf8').read()
         lg.debug('loading menu')
         self.tree = yaml.load(c, Loader=yaml.BaseLoader)
 
