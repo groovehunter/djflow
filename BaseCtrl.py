@@ -21,8 +21,8 @@ class DjBase:
         return context
 
     def yaml_load(self):
-        c = open(settings.MENU_FILE), encoding='utf8').read()
-        lg.debug('loading menu')
+        c = open(settings.MENU_FILE, encoding='utf8').read()
+        #lg.debug('loading menu')
         self.tree = yaml.load(c, Loader=yaml.BaseLoader)
 
     def yamlmenu(self):
@@ -61,8 +61,8 @@ class BaseCtrl:
     """ common methods for gui """
 
     def yaml_load(self):
-        c = open(join(settings.BASE_DIR, 'djflow/menu.yaml'), encoding='utf8').read()
-        lg.debug('loading menu')
+        c = open(settings.MENU_FILE, encoding='utf8').read()
+        #lg.debug('loading menu')
         self.tree = yaml.load(c, Loader=yaml.BaseLoader)
 
     def yamlmenu(self):
@@ -72,7 +72,7 @@ class BaseCtrl:
         menudata = []
 
         if not self.tree:
-            return
+            return menudata
         for section in self.tree:
             #self.lg.debug('section %s', section )
             sec = list(section.values())[0]

@@ -1,0 +1,22 @@
+# used for init. of menu
+# and permission system
+
+- chats:
+    id:   chats
+    name: Chats
+    href: chat/
+    urlname: tgweb:chatindex
+    links:
+      - name: Chat-Übersicht
+        href: /chat/all/
+        urlname:  chat:index
+      - name: Chat 1 - bottest uberspace
+        href: /chat/1/
+      - name: Chat 2 - bottest helfax
+        href: /chat/2/
+
+
+
+
+
+

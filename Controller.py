@@ -14,10 +14,6 @@ class Controller(BaseCtrl):
         self.context = {
           'pre' : settings.FORCE_SCRIPT_NAME,
         }
-
-        #if DEBUG: self.init_logging()
-        if settings.DEBUG2:
-            self.context['debug2'] = True
         self.request = request
         # correct location to check user?
         self.check_user()
