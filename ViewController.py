@@ -2,24 +2,22 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.conf import settings
 
-from .BaseCtrl import BaseCtrl, DjBase
+from .BaseCtrl import BaseCtrl
 
 import logging
 lg = logging.getLogger('root')
 
-class DjMixin(DjBase):
-    # kann anders heissen
-    def get_context_data(self):
-        #context = super().get_context_data(**kwargs)
-        context = {}
-        c = self.check_user()
-        self.yaml_load()
-        menudata = self.yamlmenu()
-        menu = {'menudata': menudata}
-        context.update(menu)
-        context.update(c)
-        return context
 
+class DjMixin(BaseCtrl):
+  # kann anders heissen
+  def djflow_context_data(self):
+    """ load context data of navigation and user """
+    c = self.get_user_context()
+    self.yaml_load()
+    menudata = self.yamlmenu()
+    menu = {'menudata': menudata}
+    c.update(menu)
+    return c
 
 
 class ViewControllerSupport(BaseCtrl):
@@ -30,13 +28,9 @@ class ViewControllerSupport(BaseCtrl):
     """
     context = {}
 
-    def get_user_context(self):
-        self.check_user()
-        return self.context
-        
     def init_ctrl(self):
         lg.debug('init_ctrl - VCS')
-        self.check_user()
+        self.context = self.get_user_context()
         self.fields_noshow = []
         if settings.DEBUG2:
             self.context['debug2'] = True
@@ -44,7 +38,9 @@ class ViewControllerSupport(BaseCtrl):
         self.context['show_nav'] = True   # show navbar by default
 
         self.yaml_load()
-        self.yamlmenu()
+        menudata = self.yamlmenu()
+        #lg.debug(menudata)
+        self.context.update( {'menudata':menudata} )
 
         if self.request.GET:
             GET = self.request.GET
@@ -109,4 +105,3 @@ class ViewControllerSupport(BaseCtrl):
         response = HttpResponse( )
         response.write(html)
         return response
-
