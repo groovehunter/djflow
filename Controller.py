@@ -11,12 +11,7 @@ class Controller(BaseCtrl):
     def __init__(self, request):
         lg.debug('=========================================  init Controller')
         self.context = {}
-        self.context = {
-          'pre' : settings.FORCE_SCRIPT_NAME,
-        }
         self.request = request
-        # correct location to check user?
-        self.check_user()
         self.init_ctrl()
 
     def init_ctrl(self):
@@ -43,7 +38,6 @@ class Controller(BaseCtrl):
 
     def redirect(self, url, msg=''):
         lg.debug(url)
-        url = settings.FORCE_SCRIPT_NAME + url
         if msg:
             url = url + '?msg=' + msg
         lg.debug(url)
