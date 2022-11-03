@@ -60,61 +60,6 @@ class BaseCtrl:
 
         return menudata
 
-<<<<<<< HEAD
-=======
-class BaseCtrl:
-    """ common methods for gui """
-
-    def yaml_load(self):
-        c = open(settings.MENU_FILE, encoding='utf8').read()
-        #lg.debug('loading menu')
-        self.tree = yaml.load(c, Loader=yaml.BaseLoader)
-
-    def yamlmenu(self):
-        """ create datastructure for menu rendering in template
-            using menu.yaml config file """
-
-        menudata = []
-
-        if not self.tree:
-            return menudata
-        for section in self.tree:
-            #self.lg.debug('section %s', section )
-            sec = list(section.values())[0]
-            id = sec['id']
-            #self.lg.debug('id %s', id )
-            #self.lg.debug('sec %s', sec )
-            if True:
-                menudata.append( sec )
-            else:
-                cus_sec = {
-                    'href'  :sec['href'],
-                    'id'    :sec['id'],
-                    'name'  :sec['name'],
-                    'links' :[],
-                }
-                self.lg.debug('sec links %s', sec['links'])
-                for item in sec['links']:
-                    href = item['href']
-                    if self.perm[id][href] == True:
-                        cus_sec['links'].append(item)
-                menudata.append( cus_sec )
-
-        self.context['menudata'] = menudata
-#        self.lg.debug('menudata %s', menudata)
-
-    def check_user(self):
-        lg.debug('check_user')
-        lg.debug(self.request.user)
-        if self.request.user.is_authenticated:
-          self.context['logged_in'] = True
-          self.context['username'] = self.request.user.username
-        else:
-          self.context['username'] = "Not logged in"
-          self.context['logged_in'] = False
-          self.context['username'] = "Nobody !"
-
->>>>>>> cleanup lg stuff,
     def access_denied(self):
         # self.context needed
         self.init_ctrl()
